@@ -1,0 +1,15 @@
+export const siteConfig = {
+  businessName: 'WAZUKA',
+  tagline: 'Beautiful kitchen essentials for everyday life.',
+  whatsappNumber: '15551234567',
+  phone: '555-123-4567',
+  email: 'hello@wazuka.com',
+  address: '123 Kitchen Street, Kitchen City',
+  openingHours: 'Mon-Fri 9am-6pm, Sat 10am-4pm, Sun Closed',
+  instagram: 'wazukakitchen',
+  facebook: 'wazukakitchen',
+  tiktok: 'wazukakitchen',
+  currency: 'USD',
+  showPrices: false,
+  logoVariant: 'wordmark' as const,
+} as const;
