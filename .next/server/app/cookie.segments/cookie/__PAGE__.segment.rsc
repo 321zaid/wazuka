@@ -1,0 +1,30 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:"static/chunks/174-30fef363e3c48655.js"
+5:"static/chunks/app/not-found-c7d7d6d406bfaa53.js"
+6:I[7145,["174","$4","345","$5"],"default"]
+d:"static/chunks/app/cookie/page-efd3a62091ca38e7.js"
+e:I[3212,["174","$4","677","$d"],"LegalPage"]
+f:I[484,[],"OutletBoundary"]
+10:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[484,[],"$13"]
+15:"MetadataBoundary"
+16:I[484,[],"$15"]
+:HL["/_next/static/css/918a1616b5b837db.css","style"]
+8:X
+b:X
+b:C
+c:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$Le",null,{"title":"Cookie Policy","lastUpdated":"[DATE]","children":[["$","h2",null,{"children":"1. What are cookies?"}],["$","p",null,{"children":"Cookies are small files that websites can store on your device. Similar technologies include local storage and tracking pixels."}],["$","h2",null,{"children":"2. Our approach"}],["$","p",null,{"children":["This Website does ",["$","strong",null,{"children":"not"}]," use cookies or similar technologies for advertising, tracking or analytics. We do not use Google Analytics, advertising pixels or embedded third-party content that sets cookies. Because of this, we do not show a cookie banner."]}],["$","h2",null,{"children":"3. Technical storage"}],["$","p",null,{"children":"The Website does not store any information on your device."}],["$","h2",null,{"children":"4. Third-party websites and services"}],["$","p",null,{"children":"When you click a link or button that takes you to another service (such as WhatsApp, Instagram, Facebook or Google Maps), that service may set its own cookies under its own policy. We do not control them."}],["$","h2",null,{"children":"5. Controlling cookies"}],["$","p",null,{"children":"You can block or delete cookies in your browser settings. Doing this will not affect your ability to use this Website."}],["$","h2",null,{"children":"6. Changes"}],["$","p",null,{"children":"If we add tools that use cookies in the future (for example analytics), we will update this policy and ask for your consent first where the law requires it."}],["$","h2",null,{"children":"7. Contact"}],["$","p",null,{"children":["Questions? Email ",["$","strong",null,{"children":"[CONTACT EMAIL]"}],"."]}],["$","hr",null,{"className":"my-8"}],["$","p",null,{"className":"text-sm text-navy-900/50","children":["$","em",null,{"children":"These legal texts are well-structured drafts, not legal advice. Please have a local lawyer or a qualified adviser check them before going live."}]}]]}],null,["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}],"p":"$@12","v":null,"s":"$8"}}]]
+9:[["children",{"s":"cookie","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"p":"$@a","v":"$b","s":"$8"},"c":"$Qc"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/918a1616b5b837db.css","precedence":"next"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[["$","$L6",null,{}],[]]}]}]}]]}],"p":"$@7","v":null,"s":"$8"},"c":"$Q9"},"h":{"r":["$","$1","h",{"children":[null,["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$10",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"WAZUKA"}],["$","meta","1",{"name":"description","content":"Beautiful kitchen essentials for everyday life."}]]}]}],null]}],null]}],"p":"$@17","v":null,"s":"$8"}},"a":"$@18","u":"$@19","b":"M9O1jxLHk806fC4Lm8m64"}
+11:null
+8:300
+19:true
+8:C
+18:0
+a:"$undefined"
+7:"$undefined"
+17:"$undefined"
+12:"$undefined"

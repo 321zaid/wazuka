@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import type { Product } from '@/data/products';
 import { siteConfig } from '@/config/site';
 
@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={mainImage.alt}
           width={mainImage.width}
           height={mainImage.height}
-          className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-300 group-hover:translate-y-2 ease-out"
           loading="lazy"
           decoding="async"
         />
@@ -47,7 +47,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className="p-5">
         <Link
-          to={`/product/${product.slug}`}
+          href={`/product/${product.slug}`}
           className="text-navy-900 font-medium text-sm md:text-base leading-tight group-hover:text-blue-700 transition-colors no-underline mb-1 block"
         >
           {product.name}
@@ -57,12 +57,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </p>
         <p className="text-sm text-navy-900/70 line-clamp-2 mb-4">{product.shortDescription}</p>
         <div className="flex items-center justify-between pt-4 border-t border-navy-900/5">
-          <a
-            href={`https://wa.me/${siteConfig.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMsg)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-blue-700 text-xs font-semibold hover:text-blue-600 no-underline"
-          >
+<a
+          href={`https://wa.me/${siteConfig.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMsg)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-blue-700 text-xs font-semibold hover:text-blue-600 no-underline transition-colors duration-150"
+        >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>

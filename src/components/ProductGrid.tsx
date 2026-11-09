@@ -1,6 +1,7 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useParams } from 'next/navigation';
 import type { Product } from '@/data/products';
 import { productService } from '@/lib/productService';
 import { ProductCard } from './ProductCard';
@@ -99,7 +100,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ categorySlug }) => {
           </div>
         </div>
 
-        {filteredProducts.length === 0 ? (
+{filteredProducts.length === 0 ? (
           <div className="text-center py-20">
             <div className="w-16 h-16 bg-navy-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
               📭
@@ -116,19 +117,9 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ categorySlug }) => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <AnimatePresence>
-              {filteredProducts.map((product) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <ProductCard product={product} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {filteredProducts.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
           </div>
         )}
       </div>

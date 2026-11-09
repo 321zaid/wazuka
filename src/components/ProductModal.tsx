@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import type { Product } from '@/data/products';
 import { productService } from '@/lib/productService';
 import { siteConfig } from '@/config/site';
@@ -16,7 +18,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, pro
   const [product, setProduct] = useState<Product | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     if (isOpen && productSlug) {
@@ -153,10 +155,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, pro
                   )}
                 </div>
                 <button
-                  onClick={() => {
-                    onClose();
-                    navigate(`/product/${product.slug}`);
-                  }}
+        onClick={() => {
+          onClose();
+          router.push(`/product/${product.slug}`);
+        }}
                   className="text-navy-900/60 hover:text-blue-700 transition-colors"
                   aria-label="Open product page"
                 >

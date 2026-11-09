@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 type LegalPageProps = {
@@ -18,7 +20,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ title, lastUpdated, childr
         >
           <nav className="mb-10">
             <Link
-              to="/"
+              href="/"
               className="text-blue-700 text-sm font-medium hover:underline no-underline inline-flex items-center gap-1 mb-4"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

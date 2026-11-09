@@ -1,5 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { WhatsAppLink } from './links';
 import { siteConfig } from '@/config/site';
 
@@ -8,14 +10,8 @@ type HeaderProps = {};
 export const Header: React.FC<HeaderProps> = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logoVisible, setLogoVisible] = useState(false);
-
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 10);
-  }, []);
 
   useEffect(() => {
-    setLogoVisible(true);
     const scrollHandler = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -38,53 +34,58 @@ export const Header: React.FC<HeaderProps> = () => {
           ? 'duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-navy-900/5'
           : 'duration-300 bg-transparent/50'}`}
       >
-        <div className="container-max section-padding">
+<div className="container-max section-padding">
           <div className="flex items-center justify-between">
             <Link
-              to="/"
+              href="/"
               className="flex items-center gap-2 hover:no-underline"
               onClick={() => setMobileOpen(false)}
             >
-              <div className={`group relative ${logoVisible ? 'animate-fade-in-up transition-all duration-800 ease-out' : ''}`}>
+<div className="group relative">
                 <svg
-                  width="36"
-                  height="36"
-                  className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ease-out"
+                  className="header-logo flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ease-out"
                   viewBox="0 0 200 80"
                   aria-label="WAZUKA Kitchenware"
                 >
-<text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle"
-                      font-family="Plus Jakarta Sans, sans-serif"
-                      className="text-52 md:text-48 font-bold tracking-wider"
+                  <text x="50%" y="45%" dominantBaseline="middle" textAnchor="middle"
+                      fontFamily="Plus Jakarta Sans, sans-serif"
+                      className="text-5xl md:text-6xl font-bold tracking-wider"
                       fill="#0B3D91">
                     WAZUKA
                   </text>
-                  <circle cx="130" cy="55" r="2.5" fill="#D62839" />
-                  <text x="50%" y="70" dominant-baseline="middle" text-anchor="middle"
-                        font-family="Plus Jakarta Sans, sans-serif"
-                        font-weight="500"
-                        font-size="8"
-                        letter-spacing="1"
-                        fill="#0B3D91"
-                        opacity="0.7">
-                    KITCHENWARE
-                  </text>
+                  <circle cx="100" cy="55" r="2" fill="#D62839"/>
                 </svg>
               </div>
-              <span className="hidden md:inline font-heading font-bold text-xl tracking-wider">WAZUKA</span>
+              
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href.startsWith('#') ? link.href : link.href}
-                  className="text-sm font-medium text-navy-900/80 transition-colors hover:text-blue-700 no-underline"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                // Use <a> tag for hash links (#products, #about, #contact)
+                // Use Link from react-router-dom for route navigation
+                if (link.href.startsWith('#')) {
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-sm font-medium text-navy-900/80 transition-colors hover:text-blue-700 no-underline"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                }
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium text-navy-900/80 transition-colors hover:text-blue-700 no-underline"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
               <WhatsAppLink
                 message={`Hello ${siteConfig.businessName}, I'd like to enquire about your products.`}
                 className="btn-primary whitespace-nowrap"
@@ -113,16 +114,32 @@ export const Header: React.FC<HeaderProps> = () => {
         {mobileOpen && (
           <div className="md:hidden bg-white/95 backdrop-blur-md border-b border-navy-900/5">
             <div className="container-max section-padding py-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href.startsWith('#') ? link.href : link.href}
-                  className="block text-base font-medium text-navy-900 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 no-underline"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                // Use <a> tag for hash links (#products, #about, #contact)
+                // Use Link from react-router-dom for route navigation
+                if (link.href.startsWith('#')) {
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="block text-base font-medium text-navy-900 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 no-underline"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                }
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="block text-base font-medium text-navy-900 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 no-underline"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
               <WhatsAppLink
                 message={`Hello ${siteConfig.businessName}, I'd like to enquire about your products.`}
                 className="block w-full text-center btn-primary"

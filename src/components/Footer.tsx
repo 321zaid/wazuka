@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
 export const Footer = () => {
@@ -29,8 +29,15 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <span className="w-7 h-7 rounded-lg bg-blue-700 flex items-center justify-center text-white">W</span>
-              <span className="font-heading font-bold text-xl">WAZUKA</span>
+              <svg
+                width="36"
+                height="36"
+                className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ease-out"
+                viewBox="0 0 200 80"
+                aria-label="WAZUKA Kitchenware"
+              >
+<circle cx="130" cy="55" r="2.5" fill="#D62839"/>
+              </svg>
             </div>
             <p className="text-navy-200/70 text-sm leading-relaxed max-w-sm">
               Beautiful kitchen essentials for everyday life. Glassware, ceramics, cookware, and more —
@@ -44,7 +51,7 @@ export const Footer = () => {
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-navy-200/60 text-sm hover:text-white transition-colors no-underline"
                   >
                     {link.name}
@@ -73,7 +80,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold text-white mb-6">Follow us</h4>
             <ul className="space-y-3">
-              {siteConfig.instagram !== '[INSTAGRAM HANDLE]' && (
+              {siteConfig.instagram && (
                 <li>
                   <a
                     href={`https://instagram.com/${siteConfig.instagram}`}
@@ -88,7 +95,7 @@ export const Footer = () => {
                   </a>
                 </li>
               )}
-              {siteConfig.facebook !== '[FACEBOOK PAGE]' && (
+              {siteConfig.facebook && (
                 <li>
                   <a
                     href={`https://facebook.com/${siteConfig.facebook}`}
@@ -100,7 +107,7 @@ export const Footer = () => {
                   </a>
                 </li>
               )}
-              {siteConfig.tiktok !== '[TIKTOK HANDLE]' && (
+              {siteConfig.tiktok && (
                 <li>
                   <a
                     href={`https://tiktok.com/@${siteConfig.tiktok}`}
@@ -121,13 +128,13 @@ export const Footer = () => {
             © {currentYear} {siteConfig.businessName}. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/terms" className="text-navy-400 text-sm hover:text-white no-underline">
+            <Link href="/terms" className="text-navy-400 text-sm hover:text-white no-underline">
               Terms & Conditions
             </Link>
-            <Link to="/privacy" className="text-navy-400 text-sm hover:text-white no-underline">
+            <Link href="/privacy" className="text-navy-400 text-sm hover:text-white no-underline">
               Privacy Policy
             </Link>
-            <Link to="/cookies" className="text-navy-400 text-sm hover:text-white no-underline">
+            <Link href="/cookies" className="text-navy-400 text-sm hover:text-white no-underline">
               Cookie Policy
             </Link>
           </div>

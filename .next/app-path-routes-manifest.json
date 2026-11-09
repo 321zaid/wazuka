@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/_global-error/page": "/_global-error",
+  "/category/[slug]/page": "/category/[slug]",
+  "/cookie/page": "/cookie",
+  "/page": "/",
+  "/privacy/page": "/privacy",
+  "/product/[slug]/page": "/product/[slug]",
+  "/products/page": "/products",
+  "/terms/page": "/terms"
+}

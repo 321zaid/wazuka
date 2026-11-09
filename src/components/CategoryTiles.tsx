@@ -1,5 +1,8 @@
+'use client';
+
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { categories, getCategoryBySlug } from '@/data/categories';
 
 type CategoryTilesProps = {
@@ -7,9 +10,9 @@ type CategoryTilesProps = {
 };
 
 export const CategoryTiles: React.FC<CategoryTilesProps> = ({ onSelect }) => {
-  const location = useLocation();
+  const pathname = usePathname();
   const [activeSlug, setActiveSlug] = useState<string | null>(
-    getCategoryBySlug(location.pathname.replace('/category/', ''))?.slug || null
+    getCategoryBySlug(pathname.replace('/category/', ''))?.slug || null
   );
 
   const handleSelect = (slug: string) => {
@@ -36,7 +39,7 @@ export const CategoryTiles: React.FC<CategoryTilesProps> = ({ onSelect }) => {
             return (
               <Link
                 key={category.id}
-                to={`/category/${category.slug}`}
+                href={`/category/${category.slug}`}
                 onClick={() => handleSelect(category.slug)}
                 className="group block rounded-2xl bg-white border border-navy-900/5 transition-all duration-300 hover:shadow-lg hover:border-navy-900/10 no-underline cursor-pointer border-b-2 border-red-500/0 hover:border-red-500/20"
                 aria-current={isActive ? 'page' : undefined}

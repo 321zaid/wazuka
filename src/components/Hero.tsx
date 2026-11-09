@@ -1,7 +1,8 @@
+'use client';
+
 import { useRef, useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { siteConfig } from '@/config/site';
-import { WhatsAppLink } from './links';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 type Slide = {
   id: string;
@@ -124,7 +125,7 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ slides }) => {
               }`}
               loading={index === 0 ? 'eager' : 'lazy'}
             />
-            <div className="absolute inset-0 flex items-end justify-between pt-8 pb-12 pl-12 pr-12 md:pl-20 md:pr-20">
+<div className="absolute inset-0 flex items-end justify-between pt-8 pb-12 pl-12 pr-12 md:pl-20 md:pr-20">
               <div className="max-w-md">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-white mb-2 shadow-sm">{slide.name}</h3>
                 <p className="text-white text-sm md:text-base shadow-sm">{slide.caption}</p>
@@ -200,6 +201,24 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ slides }) => {
 
 type HeroProps = {};
 
+const HeroVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+      when: "beforeStart",
+    },
+  },
+};
+
+const MotionLink = motion.create(Link);
+
 export const Hero: React.FC<HeroProps> = () => {
   const slides: Slide[] = [
     {
@@ -247,37 +266,57 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section className="relative pt-8 md:pt-24 pb-8 md:pb-20 overflow-hidden">
       <div className="container-max section-padding">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="hero-grid items-center">
           <div className="space-y-6">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider">
-              <span className="w-3 h-0.5 bg-red-500 rounded-full inline-block dpr:scale-100"></span>
-              Kitchen essentials
-            </span>
-            <h1 className="text-4xl md:text-6xl font-heading font-bold text-blue-900 leading-tight text-balance">
+              <motion.span
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider"
+                variants={HeroVariants}
+                animate="visible"
+                initial="hidden"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <span className="w-3 h-0.5 bg-red-500 rounded-full inline-block"></span>
+                Kitchen essentials
+              </motion.span>
+            <motion.h1
+              className="reveal-line text-4xl md:text-6xl font-heading font-bold text-blue-900 leading-tight text-balance"
+              variants={HeroVariants}
+              animate="visible"
+              initial="hidden"
+              viewport={{ once: true, amount: 0.3 }}>
               Beautiful kitchen essentials for everyday life.
-              <span className="border-b border-red-500 border-b-2 w-24 dpr:border-b-4" />
-            </h1>
-            <p className="text-lg md:text-xl text-navy-900/70 max-w-lg leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-lg md:text-xl text-navy-900/70 max-w-lg leading-relaxed"
+              variants={HeroVariants}
+              animate="visible"
+              initial="hidden"
+              viewport={{ once: true, amount: 0.3 }}>
               Glassware, ceramics, cookware, and more for your home. Quality you can trust, at prices that feel fair.
-            </p>
+            </motion.p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link
-                to="#products"
+              <MotionLink
+                href="#products"
                 className="btn-primary text-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Browse products
-              </Link>
-              <WhatsAppLink
-                message={`Hello ${siteConfig.businessName}, I saw your website and I'd like to know more about your products.`}
+              </MotionLink>
+              <motion.span
                 className="btn-outline text-center"
-              />
-            </div>
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                WhatsApp
+              </motion.span>
           </div>
           <div className="relative">
             <HeroSlideshow slides={slides} />
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 };

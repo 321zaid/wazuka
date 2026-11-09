@@ -1,112 +1,234 @@
-# WAZUKA Design System
+# Wazuka Motion Design Specification
 
-This document describes the design system for the WAZUKA product showcase website. It covers colors, typography, spacing, components, and animation principles.
+## Brand Overview
+Wazuka is a premium, modern kitchenware brand communicating quality, elegance, reliability, and contemporary living. The website should feel sophisticated, minimal, and spacious.
 
-## 1. Colors
+## Visual Identity
+- **Primary background:** White
+- **Primary brand colour:** Blue (`#0B3D91`)
+- **Secondary colour:** Soft blue
+- **Accent colour:** Red, used sparingly for highlights/promotions
+- **Typography:** Clean, modern, elegant - Plus Jakarta Sans
+- **Overall aesthetic:** Premium, minimal, sophisticated, spacious
 
-### Brand palette
+## Motion Design Principles
 
-| Role | Value | Usage |
-|------|-------|-------|
-| Base white | `#FFFFFF` | Page backgrounds, cards |
-| Light blue-tinted | `#F4F8FF` | Alternating section backgrounds |
-| Deep blue (dominant) | `#0B3D91` | Headings, primary buttons, key surfaces |
-| Brighter blue | `#1E63D6` | Hover states, highlights |
-| Warm red (accent) | `#D62839` | Tiny details only — badges, small underlines |
-| Dark navy (text) | `#0B1B33` | Body text instead of pure black |
+### Core Principles
+1. **Elegance over excitement** - Animations should complement, never distract
+2. **Subtlety is key** - Prefer ease-out curves over aggressive transitions
+3. **Performance-first** - Animations must be GPU-accelerated and lightweight
+4. **Purpose-driven** - Every motion serves a communicative purpose
+5. **Respect brand tone** - Blue-dominant, red-accented, no generic kitchen clichés
 
-**Proportion rule:** Approximately 90% white and blue, at most 5% red. Red is never used for large areas or main buttons.
+### Typography Animations
 
-### Full blue scale
+#### Hero Headings
+- Reveal line by line using `clip-path` or `background-clip: text`
+- Delay between lines: 100-150ms
+- Use `text-` utilities from Tailwind with blue color
+- Example: WAZUKA heading reveals each letter/subsequent line progressively
 
-- `blue-50` `#F0F5FF` — subtle backgrounds
-- `blue-100` `#E0EBFF` — light backgrounds
-- `blue-500` `#1E63D6` — hover states
-- `blue-700` `#0B3D91` — primary buttons, headings
-- `blue-900` `#062352` — darkest blue
+#### Supporting Text
+- Reveal progressively with `opacity` + `transform` 
+- Stagger children by 50ms
+- Start from `scale-95` to `scale-100`
+- Use `transition-all duration-700 ease-out`
 
-## 2. Typography
+#### Promotional Statements
+- Scroll-linked highlighting with `scroll-trigger` effects
+- Elements fade in as they enter viewport
+- Use `IntersectionObserver` for scroll-based reveals
 
-Maximum 2 font families, both self-hosted via `@fontsource`:
+#### Product Descriptions
+- Enter with subtle staggered animations
+- Sequence: image first, then text in waves
+- Use `translate-y-2` → `translate-y-0` + `opacity-0` to `opacity-1`
+- Delay: 75ms between each product in a row
 
-- **Headings:** Plus Jakarta Sans (geometric sans-serif) — used for all headings, confident and modern
-- **Body:** Inter (highly readable sans-serif) — used for all body text, captions, UI labels
+#### Section Headings
+- Elegant masked text reveals
+- Use `mask-image` with `linear-gradient` reveal
+- Or `clip-path` animated from top to bottom
+- Blue color only, no red accents in typography reveals
 
-Body text is never smaller than 16px. Headlines are large and confident on desktop, comfortably readable on mobile.
+### Product Interactions
 
-## 3. Spacing
+#### Product Images
+- Enter with subtle scale + opacity
+- From `scale-95 opacity-0` to `scale-100 opacity-1`
+- Duration: 600ms, ease-out
 
-- Section padding: `px-4 sm:px-6 lg:px-8 py-12 md:py-16`
-- Container max-width: `max-w-7xl`
-- Gap between grid items: `gap-6 md:gap-8`
-- Component padding: cards use `p-5` or `p-8`
+#### Product Cards
+- Hover interactions: slight lift + shadow
+- `transform: translate-y-[-4px]` on hover
+- Duration: 200ms, ease-out
+- No scaling up to avoid "cheap" feel
 
-## 4. Border radius
+#### Product Information
+- Appears in coordinated sequence
+- First: image
+- Then: title (100ms later)
+- Then: price/features (100ms after title)
+- Use `transition-all duration-500 ease-out`
 
-- `xl`: 12px — small elements, badges
-- `2xl`: 16px — cards, buttons
-- `3xl`: 24px — hero slideshow, modal, large containers
+#### Shopping Buttons
+- Subtle hover: background opacity change
+- Press feedback: scale 0.98 briefly
+- Red accent allowed for CTA buttons
+- `hover:text-blue-700` + `hover:bg-red-50` (very subtle)
 
-## 5. Shadows
+#### Category Sections
+- Transition naturally while scrolling
+- Parallax subtlety on image sections
+- Use `transform: translateZ(0)` for GPU acceleration
+- Duration: 800ms, ease-out on scroll
 
-- `soft`: `0 4px 20px -4px rgba(11, 27, 51, 0.08)` — subtle elevation
-- `card`: `0 8px 32px -8px rgba(11, 27, 51, 0.12)` — hover state on cards
+## Animation Curve Specifications
 
-## 6. Component styles
+### Recommended Curves
+- **Ease-out:** `cubic-bezier(0, 0, 0.2, 1)` - natural deceleration
+- **Ease-in-out:** `cubic-bezier(0.4, 0, 0.2, 1)` - balanced
+- **Never use:** `linear`, `ease-in`, aggressive bouncing curves
 
-### Buttons
+### Duration Guidelines
+- **Subtle enters:** 400-600ms
+- **Medium transitions:** 600-800ms
+- **Scroll-linked:** 800-1000ms (driven by scroll, not fixed time)
+- **Button feedback:** 150-200ms
 
-- **Primary:** Blue-700 background, white text, rounded-xl, smooth hover to blue-600 with shadow
-- **Outline:** Transparent background, blue-700 border and text, hover fills to blue-700
+## Color Usage in Motion
 
-### Product cards
+### Blue (`#0B3D91`)
+- Dominant color for all typography animations
+- Used in text color, hover states, active states
+- Consistent across all motion elements
 
-- White background, rounded-3xl, subtle border, soft shadow
-- Hover: lifts slightly (`-translate-y-1`), shadow deepens
-- Image area: `object-contain` with padding, never crops products
-- Category badge, name, short description, WhatsApp action
+### Soft Blue
+- Background overlays, subtle gradients
+- `bg-blue-50` / `bg-navy-900/5` for header variants
 
-### Section headers
+### Red (`#D62839`)
+- **Reserved** for:
+  - CTA button backgrounds (on hover/press)
+  - Important promotional badges
+  - Occasional highlight accents
+- **Never use** for typography reveals or general motion
+- Maximum 5-10% of visual motion elements
 
-- Title: `text-3xl md:text-4xl`, font-bold, navy-900
-- Subtitle: `text-lg`, navy-900/70, max-width constrained for readability
+### Forbidden Colors
+- No generic kitchen-themed browns, greens, or wood tones
+- No rainbow gradients or flashy color transitions
+- No unrelated accent colors
 
-## 7. Icons
+## Mobile Responsiveness
 
-Emoji-based icons for categories (🥛 Glassware, 🍽️ Ceramics, 🍳 Cookware, 🔌 Appliances, 📦 Storage, 🍴 Utensils). Simple SVG icons for UI actions (arrows, external links, etc.).
+### Touch Considerations
+- Minimum touch target: 44px high for interactive elements
+- Reduced motion preference respect
+- Simplified animations on mobile (duration -20%)
 
-## 8. Animation timings
+### Mobile-Specific Animations
+- Header logo: simpler fade-in, no scale hover
+- Product cards: vertical swipe navigation instead of complex hover
+- Section reveals: simpler opacity-based, no mask effects
 
-All animations use only `transform` and `opacity` for 60fps performance:
+## Performance Guidelines
 
-- **Fade in:** 0.5s ease-out
-- **Fade in up:** 0.6s ease-out (scroll-reveal)
-- **Ken Burns (hero slideshow):** 10s ease-in-out infinite, scale 1.00 → 1.03
-- **Slide transitions:** 0.7s ease-in-out cross-fade
-- **Card hover:** 0.3s all
-- **Button transitions:** 0.2s all
-- **Modal open/close:** spring physics, damping 25, stiffness 400
-- **Staggered grid:** 0.4s duration per item
+### GPU Acceleration
+- Always animate `transform` and `opacity` when possible
+- Avoid animating `width`, `height`, `margin`, `padding`
+- Use `will-change` sparingly (only during active animation)
 
-## 9. Scroll behavior
+### Reduced Motion
+- Respect `prefers-reduced-motion` media query
+- Fallback to instant styles or very subtle fade
+- No physics-based animations or complex sequences
 
-- Smooth scrolling enabled on `html`
-- Sticky header with blur and shadow after scrolling
-- Offset for sticky header when scrolling to sections
+### Browser Compatibility
+- Test on Chrome, Safari, Firefox
+- No CSS features requiring polyfills
+- Focus on modern browsers supporting IntersectionObserver
 
-## 10. Accessibility
+## Section-by-Section Motion Plan
 
-- WCAG AA contrast for all text
-- Focus rings: ring-2 ring-blue-500 ring-offset-2
-- Skip to content link
-- Touch targets minimum 44x44px
-- `prefers-reduced-motion` respected (motion reduced or disabled)
+### Header
+- Logo: fade-in on load, scale on hover (small: 10%)
+- Nav links: staggered fade-in 100ms apart
+- Scroll progress bar: width animation on scroll
+- Background: bg-white/90 ↔ bg-transparent on scroll
 
-## 11. Photo treatment
+### Hero Section
+- Main heading: line-by-line reveal
+- Subheading: progressive opacity + translate
+- CTA button: subtle scale hover, red accent
+- Background: minimal, spacious
 
-- Product images use `object-contain` — never cropped or stretched
-- Consistent 4:5 or 1:1 aspect ratio in grid with padded background
-- Soft tinted background behind each image
-- Hero slideshow: blurred enlarged copy as background when photo doesn't fill frame
-- Lazy loading for all images below first screen
-- Responsive `srcset` for performance
+### Products Grid
+- Cards enter from bottom in rows
+- Stagger: 75ms between cards, 150ms between rows
+- Hover: translate-y-2 only, no scale
+- Image: subtle fade + scale on hover (max 10%)
+
+### About Section
+- Heading: masked text reveal
+- Description: staggered fade
+- Image: subtle parallax on scroll (10px max)
+
+### Contact Section
+- Form inputs: focus + subtle border animation
+- Info text: progressive reveal
+- Social links: gentle hover scale
+
+### Footer
+- Links: fade-in bottom-up
+- Copyright: simple center alignment
+- No animations beyond subtle fades
+
+## Implementation Notes
+
+### Tailwind Classes Pattern
+```tsx
+// Typography reveal
+<h1 className="hidden reveal-line">WAZUKA</h1>
+
+// Product card enter
+<div className="group/transition-all/duration-500 ease-out">...</button>
+
+// Button press feedback
+<button className="transition-transform duration-150 group-hover:scale-98">...</button>
+```
+
+### React IntersectionObserver Pattern
+```jsx
+const revealOptions = {
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const handleReveal = (entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = "reveal 600ms ease-out forwards";
+    }
+  });
+};
+```
+
+### Keyframe Examples
+```css
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keymas fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+```

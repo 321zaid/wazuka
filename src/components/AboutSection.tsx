@@ -5,20 +5,20 @@ export const AboutSection = () => {
     <section id="about" className="py-16 md:py-24 bg-navy-50 scroll-margin-top">
       <div className="container-max section-padding">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-          <div className="space-y-8">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-blue-900 leading-tight">
+          <div className="space-y-8 reveal-on-scroll">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-blue-900 leading-tight reveal">
               About WAZUKA
             </h2>
-            <p className="text-lg text-navy-900/70 leading-relaxed">
+            <p className="text-lg text-navy-900/70 leading-relaxed reveal reveal-delay-1">
               WAZUKA is a kitchenware brand built for households, home cooks, and small food
               businesses who want reliable, good-looking kitchen products at fair prices.
             </p>
-            <p className="text-lg text-navy-900/70 leading-relaxed">
+            <p className="text-lg text-navy-900/70 leading-relaxed reveal reveal-delay-2">
               We believe buying for your kitchen should be simple and trustworthy. No hidden
               fees, no complicated checkouts — just browse, message us, and we’ll take care of
               the rest.
             </p>
-            <p className="text-lg text-navy-900/70 leading-relaxed">
+            <p className="text-lg text-navy-900/70 leading-relaxed reveal reveal-delay-3">
               From glassware and ceramics to cookware and appliances, we’re here to help you
               find what you need.
             </p>
